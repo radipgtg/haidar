@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>idar ✦</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --bg-1: #C5D9EB;
+            --bg-2: #A8C4E0;
+            --bg-3: #8BAFD4;
+            --card-bg: rgba(255, 255, 255, 0.42);
+            --card-border: rgba(255, 255, 255, 0.50);
+            --card-shadow: 0 8px 28px rgba(60, 100, 150, 0.10);
+            --card-hover: rgba(255, 255, 255, 0.62);
+            --text-dark: #0F2838;
+            --text-soft: #1E405A;
+            --text-muted: #3A6080;
+            --accent: #3A7A9E;
+            --accent-light: #6A9ABE;
+            --accent-glow: rgba(58, 122, 158, 0.15);
+            --font: 'Inter', sans-serif;
+            --radius: 20px;
+            --radius-sm: 12px;
+        }
+        html,
+        body {
+            height: 100%;
+            font-family: var(--font);
+            background: linear-gradient(145deg, var(--bg-1), var(--bg-2), var(--bg-3));
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+        body {
+            min-height: 100vh;
+            padding: 0;
+            position: relative;
+            background-attachment: fixed;
+            overflow-y: auto;
+        }
+        #opening {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: linear-gradient(145deg, var(--bg-1), var(--bg-2));
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.9s ease, visibility 0.9s ease;
+            opacity: 1;
+            visibility: visible;
+            pointer-events: none;
+        }
+        #opening.hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .opening-logo {
+            text-align: center;
+            animation: logoPulse 1.2s ease-in-out infinite alternate;
+        }
+        .opening-logo .logo-icon {
+            font-size: 5rem;
+            display: block;
+            margin-bottom: 0.3rem;
+            color: var(--accent);
+            text-shadow: 0 0 40px var(--accent-light);
+        }
+        .opening-logo h1 {
+            font-size: 3.6rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            letter-spacing: 4px;
+        }
+        .opening-logo h1 span {
+            color: var(--accent);
+        }
+        .opening-logo .sub {
+            font-size: 0.9rem;
+            color: var(--text-soft);
+            letter-spacing: 8px;
+            margin-top: 0.3rem;
+            opacity: 0.5;
+        }
+        @keyframes logoPulse {
+            0% {
+                transform: scale(0.95);
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+        }
+        .sparkle-container {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .sparkle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0;
+            animation: sparkleRise 7s ease-in infinite;
+            background: rgba(255, 255, 255, 0.50);
+            box-shadow: 0 0 6px rgba(255, 255, 255, 0.15);
+        }
+        @keyframes sparkleRise {
+            0% {
+                transform: translateY(0) scale(0.1);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.5;
+            }
+            60% {
+                opacity: 0.7;
+                transform: translateY(-40vh) scale(1.1);
+            }
+            100% {
+                transform: translateY(-100vh) scale(0.2);
+                opacity: 0;
+            }
+        }
+        .deco {
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+            font-size: 1.8rem;
+            opacity: 0.08;
+            animation: floatDeco 18s ease-in-out infinite alternate;
+        }
+        .deco:nth-child(1) {
+            top: 5%;
+            left: 4%;
+            animation-duration: 14s;
+        }
+        .deco:nth-child(2) {
+            top: 9%;
+            right: 5%;
+            animation-duration: 20s;
+            animation-delay: 1s;
+        }
+        .deco:nth-child(3) {
+            bottom: 7%;
+            left: 5%;
+            animation-duration: 22s;
+            animation-delay: 0.5s;
+        }
+        .deco:nth-child(4) {
+            bottom: 13%;
+            right: 5%;
+            animation-duration: 16s;
+            animation-delay: 2s;
+        }
+        .deco:nth-child(5) {
+            top: 44%;
+            left: 2%;
+            animation-duration: 24s;
+            animation-delay: 0.8s;
+        }
+        .deco:nth-child(6) {
+            top: 38%;
+            right: 2%;
+            animation-duration: 18s;
+            animation-delay: 1.5s;
+        }
+        @keyframes floatDeco {
+            0% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+            }
+            100% {
+                transform: translate(30px, -35px) rotate(18deg) scale(1.12);
+            }
+        }
+        .domain-bar {
+            position: sticky;
+            top: 0;
+            z-index: 150;
+            background: rgba(197, 217, 235, 0.75);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--card-border);
+            padding: 0.6rem 1.2rem;
+            width: 100%;
+            max-width: 520px;
+            margin: 0 auto;
+            border-radius: 0 0 var(--radius) var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.02);
+        }
+        .domain-bar .search-icon {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            opacity: 0.5;
+        }
+        .domain-bar .domain-text {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            letter-spacing: 0.5px;
+            background: var(--card-bg);
+            padding: 0.25rem 1.2rem;
+            border-radius: 2rem;
+            border: 1px solid var(--card-border);
+            font-family: 'Inter', sans-serif;
+        }
+        .domain-bar .domain-text i {
+            color: var(--accent);
+            margin-right: 6px;
+            font-size: 0.8rem;
+        }
+        .domain-bar .domain-badge {
+            font-size: 0.55rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            opacity: 0.4;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .domain-bar .lock-icon {
+            color: var(--accent);
+            font-size: 0.7rem;
+            opacity: 0.5;
+        }
+        .hamburger-btn {
+            position: fixed;
+            top: 12px;
+            left: 22px;
+            z-index: 500;
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1.5px solid var(--card-border);
+            border-radius: var(--radius);
+            padding: 0.5rem 0.7rem;
+            cursor: pointer;
+            transition: 0.3s ease;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+        }
+        .hamburger-btn:hover {
+            background: var(--card-hover);
+            border-color: var(--accent);
+        }
+        .hamburger-btn span {
+            display: block;
+            width: 24px;
+            height: 2.5px;
+            background: var(--text-dark);
+            border-radius: 4px;
+        }
+        .sidebar-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 40, 56, 0.12);
+            z-index: 150;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+        .sidebar-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 300px;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(28px);
+            border-right: 1.5px solid var(--card-border);
+            z-index: 200;
+            transform: translateX(-105%);
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            padding: 2rem 1.4rem;
+            overflow-y: auto;
+            box-shadow: 4px 0 40px rgba(0, 0, 0, 0.04);
+        }
+        .sidebar.open {
+            transform: translateX(0);
+        }
+        .sidebar-close {
+            position: absolute;
+            top: 16px;
+            right: 18px;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .sidebar-close:hover {
+            color: var(--text-dark);
+        }
+        .sidebar h3 {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text-dark);
+            margin-bottom: 1.2rem;
+            letter-spacing: 2px;
+        }
+        .sidebar h3 i {
+            color: var(--accent);
+            margin-right: 8px;
+        }
+        .sidebar-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem;
+        }
+        .sphoto {
+            border-radius: var(--radius);
+            overflow: hidden;
+            aspect-ratio: 1/1;
+            border: 2px solid var(--card-border);
+            transition: all 0.3s ease;
+            animation: wobblePhoto 4s ease-in-out infinite;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+        }
+        .sphoto:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+        .sphoto:nth-child(3) {
+            animation-delay: 1.0s;
+        }
+        .sphoto:nth-child(4) {
+            animation-delay: 1.5s;
+        }
+        .sphoto:nth-child(5) {
+            animation-delay: 2.0s;
+        }
+        .sphoto:nth-child(6) {
+            animation-delay: 2.5s;
+        }
+        @keyframes wobblePhoto {
+            0%,
+            100% {
+                transform: rotate(0deg) scale(1);
+            }
+            25% {
+                transform: rotate(2.5deg) scale(1.02);
+            }
+            50% {
+                transform: rotate(-2.5deg) scale(0.98);
+            }
+            75% {
+                transform: rotate(1.5deg) scale(1.01);
+            }
+        }
+        .sphoto img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        .sphoto:hover {
+            transform: scale(1.05) rotate(0deg) !important;
+            border-color: var(--accent);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+        }
+        .sphoto:hover img {
+            transform: scale(1.08);
+        }
+        .sidebar-text {
+            margin-top: 1.6rem;
+            padding-top: 1.2rem;
+            border-top: 1.5px solid var(--card-border);
+            font-size: 0.7rem;
+            line-height: 1.8;
+            color: var(--text-soft);
+            opacity: 0.7;
+            text-align: justify;
+        }
+        .sidebar-text strong {
+            color: var(--text-dark);
+            opacity: 1;
+        }
+        .sidebar-text i {
+            color: var(--accent);
+            margin: 0 2px;
+        }
+        .sticky-header {
+            position: sticky;
+            top: 52px;
+            z-index: 100;
+            background: rgba(197, 217, 235, 0.70);
+            backdrop-filter: blur(20px);
+            padding: 1.4rem 1.2rem 1.2rem;
+            border-bottom: 1.5px solid var(--card-border);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.02);
+            width: 100%;
+            max-width: 520px;
+            margin: 0 auto;
+            border-radius: 0 0 var(--radius) var(--radius);
+        }
+        .sticky-header .header-row {
+            display: flex;
+            align-items: center;
+            gap: 1.4rem;
+        }
+        .sticky-header .avatar-sm {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid var(--card-border);
+            flex-shrink: 0;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+        }
+        .sticky-header .avatar-sm img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .sticky-header .header-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .sticky-header .header-info .name-sm {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            line-height: 1.1;
+            letter-spacing: -0.5px;
+        }
+        .sticky-header .header-info .name-sm .accent {
+            color: var(--accent);
+        }
+        .sticky-header .header-info .tags-sm {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            font-size: 0.8rem;
+            color: var(--text-soft);
+            opacity: 0.6;
+            margin-top: 0.2rem;
+        }
+        .sticky-header .header-info .tags-sm span {
+            background: var(--card-bg);
+            padding: 0.1rem 0.9rem;
+            border-radius: 2rem;
+            border: 1px solid var(--card-border);
+        }
+        .sticky-header .social-sm {
+            display: flex;
+            gap: 0.6rem;
+            flex-shrink: 0;
+            flex-wrap: wrap;
+        }
+        .sticky-header .social-sm a {
+            color: var(--text-soft);
+            transition: 0.3s;
+            background: var(--card-bg);
+            padding: 0.4rem 0.8rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--card-border);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+        }
+        .sticky-header .social-sm a i {
+            font-size: 1.3rem;
+        }
+        .sticky-header .social-sm a:hover {
+            background: var(--card-hover);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+        .sticky-header .social-sm a.wa:hover i {
+            color: #25d366;
+        }
+        .sticky-header .social-sm a.ig:hover i {
+            color: #E4405F;
+        }
+        .sticky-header .social-sm a.tg:hover i {
+            color: #26A5E4;
+        }
+        .sticky-header .social-sm a.tt:hover i {
+            color: #ff0050;
+        }
+        .app {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 520px;
+            margin: 0.8rem auto 0;
+            padding: 0 0.8rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+            opacity: 0;
+            animation: slideUpContent 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            animation-delay: 1.2s;
+        }
+        @keyframes slideUpContent {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(14px);
+            border: 2px solid var(--card-border);
+            border-radius: var(--radius);
+            padding: 1.2rem 1.4rem;
+            box-shadow: var(--card-shadow);
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+        }
+        .card:hover {
+            background: var(--card-hover);
+            border-color: rgba(255, 255, 255, 0.8);
+            transform: translateY(-3px);
+            box-shadow: 0 20px 50px rgba(60, 100, 150, 0.08);
+        }
+        .card-label {
+            font-size: 0.55rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0.5;
+        }
+        .card-label i {
+            color: var(--accent);
+            font-size: 0.75rem;
+        }
+        .widget-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+            width: 100%;
+        }
+        .widget-item {
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            border: 1.5px solid var(--card-border);
+            border-radius: var(--radius);
+            padding: 0.7rem 0.2rem;
+            text-align: center;
+            transition: 0.3s ease;
+        }
+        .widget-item:hover {
+            background: var(--card-hover);
+            transform: translateY(-3px);
+        }
+        .widget-item .icon {
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+        .widget-item .value {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-top: 0.1rem;
+        }
+        .widget-item .label {
+            font-size: 0.45rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            opacity: 0.4;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .widget-grid-2 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+            width: 100%;
+        }
+        .widget-item-2 {
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            border: 1.5px solid var(--card-border);
+            border-radius: var(--radius);
+            padding: 0.8rem 0.3rem;
+            text-align: center;
+            transition: 0.3s ease;
+            min-height: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .widget-item-2:hover {
+            background: var(--card-hover);
+            transform: translateY(-3px);
+        }
+        .widget-item-2 .icon-big {
+            font-size: 1.8rem;
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+        .widget-item-2 .value-big {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            line-height: 1.3;
+        }
+        .widget-item-2 .label-small {
+            font-size: 0.45rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            opacity: 0.4;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 0.1rem;
+        }
+        .hobby-tags {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .hobby-tags span {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius);
+            padding: 0.4rem 1.4rem 0.4rem 1rem;
+            font-size: 0.8rem;
+            color: var(--text-soft);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: 0.3s;
+        }
+        .hobby-tags span i {
+            color: var(--accent);
+        }
+        .hobby-tags span:hover {
+            background: var(--card-hover);
+            border-color: var(--accent);
+            transform: scale(1.04);
+        }
+        .music-mini {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            border: 1.5px solid var(--card-border);
+            border-radius: var(--radius);
+            padding: 0.5rem 1rem;
+            transition: 0.3s;
+        }
+        .music-mini:hover {
+            background: var(--card-hover);
+        }
+        .music-mini .cover {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid var(--card-border);
+            flex-shrink: 0;
+            animation: spinLogo 16s linear infinite;
+        }
+        .music-mini .cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        @keyframes spinLogo {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        .music-mini .info {
+            flex: 1;
+            min-width: 0;
+        }
+        .music-mini .info .now {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        .music-mini .info .artist {
+            font-size: 0.55rem;
+            color: var(--text-muted);
+        }
+        .music-mini .info .song {
+            font-size: 0.6rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+        .music-mini .controls {
+            display: flex;
+            gap: 0.3rem;
+            align-items: center;
+        }
+        .music-mini .controls button {
+            background: var(--card-bg);
+            border: 1.5px solid var(--card-border);
+            color: var(--text-dark);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .music-mini .controls button:hover {
+            background: var(--card-hover);
+            border-color: var(--accent);
+            transform: scale(1.06);
+        }
+        .music-mini .status {
+            font-size: 0.45rem;
+            color: var(--text-muted);
+            opacity: 0.4;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex-shrink: 0;
+        }
+        .music-mini .status .dot-live {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #6fcf97;
+            animation: pulseDot 1.5s ease-in-out infinite;
+        }
+        @keyframes pulseDot {
+            0%,
+            100% {
+                opacity: 0.3;
+                transform: scale(0.8);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+        .typing-text {
+            font-size: 0.9rem;
+            line-height: 1.9;
+            color: var(--text-soft);
+            min-height: 3.8rem;
+        }
+        .typing-text .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.1rem;
+            background: var(--text-dark);
+            vertical-align: text-bottom;
+            animation: blink 0.8s step-end infinite;
+            margin-left: 2px;
+        }
+        @keyframes blink {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+        }
+        .typing-text strong {
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+        .footer-decoration {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            padding: 0.6rem 0.5rem;
+            font-size: 1.6rem;
+            opacity: 0.25;
+            letter-spacing: 4px;
+        }
+        .footer-decoration span {
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+        .footer-decoration span:hover {
+            transform: scale(1.2) rotate(8deg);
+            opacity: 0.8;
+        }
+        .footer-note {
+            text-align: center;
+            font-size: 0.5rem;
+            color: var(--text-muted);
+            opacity: 0.25;
+            letter-spacing: 3px;
+            padding: 0.4rem 0;
+        }
+        @media (max-width: 480px) {
+            .domain-bar {
+                padding: 0.4rem 0.8rem;
+                max-width: 100%;
+                border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+            }
+            .domain-bar .domain-text {
+                font-size: 0.75rem;
+                padding: 0.15rem 0.8rem;
+            }
+            .domain-bar .domain-badge {
+                display: none;
+            }
+            .hamburger-btn {
+                top: 8px;
+                left: 14px;
+                width: 38px;
+                height: 38px;
+                padding: 0.4rem 0.5rem;
+            }
+            .hamburger-btn span {
+                width: 18px;
+                height: 2px;
+            }
+            .sticky-header {
+                top: 44px;
+                padding: 1rem 0.8rem 0.8rem;
+                border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+            }
+            .sticky-header .avatar-sm {
+                width: 100px;
+                height: 100px;
+            }
+            .sticky-header .header-info .name-sm {
+                font-size: 2rem;
+            }
+            .sticky-header .header-info .tags-sm {
+                font-size: 0.6rem;
+            }
+            .sticky-header .social-sm a {
+                font-size: 0.55rem;
+                padding: 0.2rem 0.4rem;
+            }
+            .sticky-header .social-sm a i {
+                font-size: 0.9rem;
+            }
+            .app {
+                padding: 0 0.4rem 1rem;
+                gap: 0.7rem;
+                margin-top: 0.6rem;
+            }
+            .card {
+                padding: 0.9rem 1rem;
+                border-radius: var(--radius-sm);
+            }
+            .widget-grid {
+                gap: 0.4rem;
+            }
+            .widget-item {
+                padding: 0.5rem 0.1rem;
+            }
+            .widget-item .icon {
+                font-size: 1rem;
+            }
+            .widget-item .value {
+                font-size: 0.6rem;
+            }
+            .widget-grid-2 {
+                gap: 0.4rem;
+            }
+            .widget-item-2 {
+                padding: 0.5rem 0.1rem;
+                min-height: 60px;
+            }
+            .widget-item-2 .icon-big {
+                font-size: 1.4rem;
+            }
+            .widget-item-2 .value-big {
+                font-size: 0.65rem;
+            }
+            .music-mini .cover {
+                width: 34px;
+                height: 34px;
+            }
+            .music-mini .controls button {
+                width: 26px;
+                height: 26px;
+                font-size: 0.6rem;
+            }
+            .hobby-tags span {
+                font-size: 0.7rem;
+                padding: 0.25rem 0.9rem 0.25rem 0.7rem;
+            }
+            .sidebar {
+                width: 250px;
+                padding: 1.2rem 0.8rem;
+            }
+            .deco {
+                display: none;
+            }
+            .opening-logo .logo-icon {
+                font-size: 3.6rem;
+            }
+            .opening-logo h1 {
+                font-size: 2.6rem;
+            }
+            .footer-decoration {
+                font-size: 1.2rem;
+                gap: 1rem;
+            }
+        }
+        @media (max-width: 380px) {
+            .sticky-header .avatar-sm {
+                width: 80px;
+                height: 80px;
+            }
+            .sticky-header .header-info .name-sm {
+                font-size: 1.6rem;
+            }
+            .sticky-header .header-row {
+                gap: 1rem;
+            }
+            .sticky-header .social-sm a {
+                font-size: 0.5rem;
+                padding: 0.15rem 0.35rem;
+            }
+            .sticky-header .social-sm a i {
+                font-size: 0.75rem;
+            }
+            .domain-bar .domain-text {
+                font-size: 0.65rem;
+                padding: 0.1rem 0.6rem;
+            }
+        }
+    </style>
+</head>
+
+        <body>
+    <div id="opening">
+        <div class="opening-logo">
+            <p class="sub">selamat datang</p>
+        </div>
+    </div>
+    <div class="sparkle-container" id="sparkleContainer"></div>
+
+    <div class="deco" style="top:5%;left:4%;">☁️</div>
+    <div class="deco" style="top:9%;right:5%;">🌤️</div>
+    <div class="deco" style="bottom:7%;left:5%;">🕊️</div>
+    <div class="deco" style="bottom:13%;right:5%;">🌸</div>
+    <div class="deco" style="top:44%;left:2%;">✨</div>
+    <div class="deco" style="top:38%;right:2%;">🌿</div>
+
+    <div class="hamburger-btn" id="hamburgerBtn">
+        <span></span><span></span><span></span>
+    </div>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="sidebar" id="sidebar">
+        <button class="sidebar-close" id="sidebarClose"><i class="fas fa-times"></i></button>
+        <h3><i class="fas fa-images"></i> Gallery</h3>
+        <div class="sidebar-grid">
+            <div class="sphoto"><img src="https://u.pone.rs/uyfihiom.jpg" alt="f1" /></div>
+            <div class="sphoto"><img src="https://u.pone.rs/sojcqtms.jpg" alt="f2" /></div>
+            <div class="sphoto"><img src="https://u.pone.rs/ahrtyqtp.jpg" alt="f3" /></div>
+            <div class="sphoto"><img src="https://u.pone.rs/czahblaa.jpg" alt="f4" /></div>
+            <div class="sphoto"><img src="https://u.pone.rs/zvgdexax.jpg" alt="f5" /></div>
+            <div class="sphoto"><img src="https://u.pone.rs/yyqkiubp.jpg" alt="f6" /></div>
+        </div>
+        <div class="sidebar-text">
+            <strong>✦ idar's corner ✦</strong><br />
+            Hai! aku <i class="fas fa-heart" style="color:var(--accent);"></i> senang bertemu denganmu di sini.
+            Semoga harimu menyenangkan dan penuh kebahagiaan.
+            Jangan lupa tersenyum ya, karena senyummu adalah
+            hal terindah yang bisa kamu bagikan kepada dunia.
+            <br /><br />
+            <i class="fas fa-music" style="color:var(--accent);"></i> Musik adalah pelukan untuk jiwa.
+            <i class="fas fa-coffee" style="color:var(--accent);"></i> Kopi adalah teman terbaik saat hujan.
+            <i class="fas fa-star" style="color:var(--accent);"></i> Dan kamu adalah bintang di hariku.
+        </div>
+    </div>
+
+    <div class="domain-bar">
+        <span class="search-icon"><i class="fas fa-search"></i></span>
+        <span class="domain-text"><i class="fas fa-globe"></i> hhidr.my.id</span>
+        <span class="domain-badge">🔒 Aman</span>
+        <span class="lock-icon"><i class="fas fa-lock"></i></span>
+    </div>
+
+    <div class="sticky-header">
+        <div class="header-row">
+            <div class="avatar-sm">
+                <img src="https://u.pone.rs/ahrtyqtp.jpg" alt="idar" />
+            </div>
+            <div class="header-info">
+                <div class="name-sm">idar</div>
+                <div class="tags-sm">
+                    <span>🌙 24/7</span>
+                    <span>🍄 South Korea</span>
+                    <span>⭐ ganteng</span>
+                </div>
+            </div>
+            <div class="social-sm">
+                <a href="https://whatsapp.com/channel/0029VbCWESDFCCoSytu4AG1C" target="_blank" class="wa"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://instagram.com/hhaidr_" target="_blank" class="ig"><i class="fab fa-instagram"></i></a>
+                <a href="https://t.me/idardndle" target="_blank" class="tg"><i class="fab fa-telegram-plane"></i></a>
+                <a href="https://www.tiktok.com/@byeonwoodar" target="_blank" class="tt"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="app">
+        <div class="music-mini">
+            <div class="cover">
+                <img src="https://u.pone.rs/btzqmtev.jpg" alt="cover" />
+            </div>
+            <div class="info">
+                <div class="now" id="nowPlaying">🎵 Sedang diputar</div>
+                <div class="artist" id="artistTitle">Pryvt</div>
+                <div class="song" id="songTitle">— Blue salvia</div>
+            </div>
+            <div class="controls">
+                <button id="playPauseBtn"><i class="fas fa-pause" id="playIcon"></i></button>
+                <button id="nextBtn"><i class="fas fa-forward"></i></button>
+            </div>
+            <div class="status">
+                <span class="dot-live"></span>
+                <span>LIVE</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-label"><i class="fas fa-user-astronaut"></i> About</div>
+            <div class="typing-text" id="typingAbout">
+                <span class="cursor" id="typingCursor"></span>
+            </div>
+        </div>
+
+        <div class="widget-grid">
+            <div class="widget-item">
+                <div class="icon"><i class="fas fa-clock"></i></div>
+                <div class="value" id="clockDisplay">--:--</div>
+                <div class="label">Waktu</div>
+            </div>
+            <div class="widget-item">
+                <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+                <div class="value">🇮🇩 ID</div>
+                <div class="label">Lokasi</div>
+            </div>
+            <div class="widget-item">
+                <div class="icon"><i class="fas fa-smile"></i></div>
+                <div class="value">💫 Happy</div>
+                <div class="label">Mood</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-label"><i class="fas fa-star"></i> Hobi</div>
+            <div class="hobby-tags">
+                <span><i class="fas fa-utensils"></i> Makan</span>
+                <span><i class="fas fa-tv"></i> Nonton</span>
+                <span><i class="fas fa-mug-hot"></i> Tidur</span>
+            </div>
+            <div style="font-style:italic; font-size:0.8rem; color:var(--text-soft); text-align:center; margin-top:0.5rem; padding-top:0.5rem; border-top:1.5px solid var(--card-border);">
+                <i class="fas fa-quote-left" style="color:var(--accent); opacity:0.3; margin-right:4px;"></i>
+                "gaada motto adanya usaha." — idar
+                <i class="fas fa-quote-right" style="color:var(--accent); opacity:0.3; margin-left:4px;"></i>
+            </div>
+        </div>
+
+        <div class="widget-grid-2">
+            <div class="widget-item-2">
+                <span class="icon-big">☀️</span>
+                <span class="value-big">26°C</span>
+                <span class="label-small">Cuaca</span>
+            </div>
+            <div class="widget-item-2">
+                <span class="icon-big">💧</span>
+                <span class="value-big">65%</span>
+                <span class="label-small">Kelembaban</span>
+            </div>
+            <div class="widget-item-2">
+                <span class="icon-big">🌬️</span>
+                <span class="value-big">10 km/h</span>
+                <span class="label-small">Angin</span>
+            </div>
+            <div class="widget-item-2">
+                <span class="icon-big">🌙</span>
+                <span class="value-big">12:34 AM</span>
+                <span class="label-small">Fase Bulan</span>
+            </div>
+            <div class="widget-item-2">
+                <span class="icon-big">🧠</span>
+                <span class="value-big">ISFP</span>
+                <span class="label-small">Personality</span>
+            </div>
+            <div class="widget-item-2">
+                <span class="icon-big">🎯</span>
+                <span class="value-big">#stayhappy</span>
+                <span class="label-small">Mantra</span>
+            </div>
+        </div>
+
+        <div class="footer-decoration">
+            <span>🌙</span>
+            <span>✨</span>
+            <span>🌸</span>
+            <span>🌿</span>
+            <span>🕊️</span>
+            <span>⭐</span>
+            <span>☕</span>
+            <span>🎧</span>
+        </div>
+
+        <div class="footer-note">
+            ✦ dibuat dengan cinta & semangat — idar ✦
+        </div>
+    </div>
+
+    <audio id="bgMusic" preload="auto"></audio>
+</body>
+
+  <script>
+    setTimeout(() => {
+        document.getElementById('opening').classList.add('hide');
+    }, 2000);
+
+    (function() {
+        const c = document.getElementById('sparkleContainer');
+        for (let i = 0; i < 180; i++) {
+            const s = document.createElement('div');
+            s.className = 'sparkle';
+            const size = 1.5 + Math.random() * 5;
+            s.style.width = size + 'px';
+            s.style.height = size + 'px';
+            s.style.left = Math.random() * 100 + '%';
+            s.style.bottom = '-10px';
+            s.style.animationDelay = (Math.random() * 8) + 's';
+            s.style.animationDuration = (4 + Math.random() * 5) + 's';
+            c.appendChild(s);
+        }
+    })();
+
+    const hamburger = document.getElementById('hamburgerBtn');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    const closeBtn = document.getElementById('sidebarClose');
+
+    function openSidebar() {
+        sidebar.classList.add('open');
+        overlay.classList.add('active');
+    }
+
+    function closeSidebar() {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('active');
+    }
+    hamburger.addEventListener('click', openSidebar);
+    closeBtn.addEventListener('click', closeSidebar);
+    overlay.addEventListener('click', closeSidebar);
+
+    const aboutText = "Hi! I'm Haidar, 16yo. I like editing but I'm not very good at it, and I like Marvel movies (even though I haven't watched many of them), you also know that I'm a bunnies, that's all NEWJEANS IS FIVE 🐰";
+    const typingContainer = document.getElementById('typingAbout');
+    let charIndex = 0;
+
+    function typeAbout() {
+        if (charIndex < aboutText.length) {
+            const currentText = aboutText.substring(0, charIndex + 1);
+            typingContainer.innerHTML = currentText + '<span class="cursor" id="typingCursor"></span>';
+            charIndex++;
+            setTimeout(typeAbout, 35);
+        } else {
+            const cursor = document.getElementById('typingCursor');
+            if (cursor) cursor.style.animation = 'blink 0.8s step-end infinite';
+        }
+    }
+    setTimeout(typeAbout, 2200);
+
+    function updateClock() {
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const el = document.getElementById('clockDisplay');
+        if (el) el.textContent = hours + ':' + minutes;
+    }
+    updateClock();
+    setInterval(updateClock, 10000);
+
+    const playlist = [
+        { src: 'https://u.pone.rs/jvoypjaj.mp3', title: 'Blue salvia', artist: 'Pryvt' },
+        { src: 'https://files.catbox.moe/16vvou.mp3', title: 'Bad', artist: 'Wave to earth' },
+        { src: 'https://files.catbox.moe/b1oxyb.mp3', title: 'Seasons', artist: 'Wave to earth' }
+    ];
+
+    let currentIndex = 0;
+    const audio = document.getElementById('bgMusic');
+    const nowEl = document.getElementById('nowPlaying');
+    const songEl = document.getElementById('songTitle');
+    const playBtn = document.getElementById('playPauseBtn');
+    const playIcon = document.getElementById('playIcon');
+    const nextBtn = document.getElementById('nextBtn');
+    const artistEl = document.getElementById('artistTitle');
+
+    function loadSong(index) {
+        const song = playlist[index];
+        audio.src = song.src;
+        audio.load();
+        audio.play().catch(() => {});
+        nowEl.textContent = '🎵 Sedang diputar';
+        songEl.textContent = '— ' + song.title;
+        artistEl.textContent = song.artist;
+        playIcon.className = 'fas fa-pause';
+    }
+
+    loadSong(0);
+
+    playBtn.addEventListener('click', function() {
+        if (audio.paused) {
+            audio.play().catch(() => {});
+            playIcon.className = 'fas fa-pause';
+        } else {
+            audio.pause();
+            playIcon.className = 'fas fa-play';
+        }
+    });
+
+    nextBtn.addEventListener('click', function() {
+        currentIndex = (currentIndex + 1) % playlist.length;
+        loadSong(currentIndex);
+    });
+
+    audio.addEventListener('ended', function() {
+        currentIndex = (currentIndex + 1) % playlist.length;
+        loadSong(currentIndex);
+    });
+
+    document.addEventListener('click', function() {
+        if (audio.paused) {
+            audio.play().catch(() => {});
+            playIcon.className = 'fas fa-pause';
+        }
+    }, { once: true });
+
+    document.getElementById('opening').addEventListener('click', function() {
+        if (this.classList.contains('hide')) return;
+        this.classList.add('hide');
+    });
+</script>
+</html>
